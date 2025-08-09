@@ -1,0 +1,45 @@
+## Program design
+
+Whole process of determining lowest probability of being detected for given room can
+be summarized in following steps:
+
+1. The map file is being parsed. I used the trifecta parser because I am most
+familiar with it. End product of this process is Room data that contains information about
+the length of the room's square (side) and positions of all detectors.
+As it was required I configured the parser so it would stop when it parse first N pairs,
+N being the number in the second line of the *.map file. Even if the file contains more pairs.
+2. Then a Mazes are being created for each tolerance parameter determined by function that
+increases accurancy with each iteration (described later)
+3. Maze is matrix of cells. Each Cell can be either Empty of Wall. Empty cells represents area where
+burglar can go and Wall where not. For given tolerance parameter Walls are representing area that
+if explored would exceed possibility of being detected beyond it.
+4. Given Maze is being solved by BFS algorithm.
+5. Function increasing tolerance parameter work in a similar manner to binary search
+and computing square root. It starts with zero (ideal possibility of being detected by our burglar)
+and in the first iteration it increases the parameter by 0.1 to determine first decimal position.
+When it finds paramter that does not match followed by one that does it starts next iteration to
+determine next decimal position. It begins by starting with last position that does not match
+and increasing this time be 0.01 and so on. Until required numbers of iterations pass 
+(equal to required decimal postions).
+6. Result of that function is being returned to end user.
+
+## Alternatives and why I rejected it
+
+In first I considered genetic algorithm. Permutating set of points that would become walkable path.
+But I realized that permutated set of points is not guarnateed to not contain jumps. ie following
+points in a list not being closest next.
+
+I also considered filling heat map via monte carlo method but I realized that it may be much
+more computing hungry than simply calculating the grid. It could be also not resistant to
+some bizzare configurations of detectors.
+
+Even in my chosen design I tried to solve the maze via depth-first search algorithm
+but on some mazes it got stuck in infinite loop.
+
+## Inspirations
+I got maze-solving algorithm from wikipedia pages.
+https://en.wikipedia.org/wiki/Maze-solving_algorithm
+https://en.wikipedia.org/wiki/Breadth-first_search
+I took the idea of increasing accuracy from algorithm finding square root
+that I saw in a book "Introduction to Mathematical Reasoning" by Peter J. Eccles's
+ISBN 978-0-521-59718-0

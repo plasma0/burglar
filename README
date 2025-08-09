@@ -1,0 +1,25 @@
+# How to...
+
+## Build the application
+### Perequisites
+I assume you are on UNIX-like environment with installed cabal and GHC that supports GHC2021
+
+Internet access may be needed to download required dependences
+### OK, now how to build it
+Run the following command
+> cabal build
+## Run the application
+Run following command
+
+> ./burglar file_you_want_to.map
+
+## Run the tests
+
+## Information
+This was created using:
+
+GHC 9.6.7
+
+Cabal 3.12.1.0
+
+on WSL2/Ubuntu 22.04.5 LTS
