@@ -1,4 +1,4 @@
-module RoomSolver where
+module RoomSolver(toleranceApproximation) where
 
 import Room
 
@@ -36,6 +36,7 @@ detection roomL (detX, detY) (posX, posY) = let distance = sqrt ((detX-posX)^2 +
 -- taking into account all present detectors
 -- it works by taking possiblility of being detected by most sensitive detector at given location
 detections :: Room -> (Double, Double) -> Double
+detections (Room _ []) _ = 0.0
 detections (Room side detectors) point = maximum $ detection side point <$> detectors
 
 -- this one generates "heat map" for given room and supplied tolerance parmeter

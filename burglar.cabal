@@ -3,14 +3,13 @@ cabal-version:      3.0
 name:               burglar
 version:            0.1.0.0
 
-
 author:             plasma0
 
 maintainer:         konrad_kania@wp.pl
 
 build-type:         Simple
 
-extra-doc-files:    CHANGELOG.md, DESIGN
+extra-doc-files:    DESIGN, README
 common warnings
     ghc-options: -Wall
 
@@ -27,3 +26,12 @@ library room
     build-depends:    base ^>=4.18.3.0, trifecta, containers, matrix
     exposed-modules:  Room, RoomLoader, RoomSolver
     default-language: GHC2021
+
+test-suite spec
+    type: exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          Spec.hs
+    other-modules:    RoomSpec
+    build-depends:    base ^>=4.18.3.0, hspec, room
+    default-language: GHC2021
+    build-tool-depends: hspec-discover:hspec-discover

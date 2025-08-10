@@ -1,4 +1,4 @@
-module RoomLoader where
+module RoomLoader(getRoom) where
 
 import Room
 
