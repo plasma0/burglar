@@ -8,6 +8,9 @@ Internet access may be needed to download required dependences
 ### OK, now how to build it
 Run the following command
 > cabal build
+
+Sometimes it may be necessary to add execution privilege to bash file.
+> chmod +x burglar
 ## Run the application
 Run following command
 
